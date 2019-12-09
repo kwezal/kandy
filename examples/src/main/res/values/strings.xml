@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">Kandy Examples</string>
+    <string name="activity_label_list_views">List Views Example</string>
+</resources>
