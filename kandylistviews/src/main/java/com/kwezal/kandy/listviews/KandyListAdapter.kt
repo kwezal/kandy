@@ -29,6 +29,8 @@ open class KandyListAdapter
     constructor() : this(ArrayList<AbstractAnyKandyListItem>(0))
 
     constructor(items: Iterable<IKandyListItemCreator>) : this(items.createListItems())
+    constructor(vararg items: AbstractAnyKandyListItem) : this(mutableListOf(*items))
+    constructor(vararg items: IKandyListItemCreator) : this(listOf(*items))
 
     final override fun getItemCount() = mItemsManager.size
 
