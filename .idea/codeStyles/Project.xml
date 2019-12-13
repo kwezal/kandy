@@ -1,49 +1,10 @@
 <component name="ProjectCodeStyleConfiguration">
   <code_scheme name="Project" version="173">
-    <AndroidXmlCodeStyleSettings>
-      <option name="USE_CUSTOM_SETTINGS" value="true" />
-    </AndroidXmlCodeStyleSettings>
     <JetCodeStyleSettings>
-      <option name="PACKAGES_TO_USE_STAR_IMPORTS">
-        <value>
-          <package name="java.util" withSubpackages="false" static="false" />
-          <package name="kotlinx.android.synthetic" withSubpackages="true" static="false" />
-          <package name="tornadofx" withSubpackages="false" static="false" />
-        </value>
-      </option>
-      <option name="INSERT_WHITESPACES_IN_SIMPLE_ONE_LINE_METHOD" value="false" />
-      <option name="SPACE_BEFORE_WHEN_PARENTHESES" value="false" />
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
     </JetCodeStyleSettings>
-    <XML>
-      <option name="XML_KEEP_LINE_BREAKS" value="false" />
-      <option name="XML_ALIGN_ATTRIBUTES" value="false" />
-      <option name="XML_SPACE_INSIDE_EMPTY_TAG" value="true" />
-      <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
-    </XML>
-    <codeStyleSettings language="JAVA">
-      <option name="ELSE_ON_NEW_LINE" value="true" />
-      <option name="WHILE_ON_NEW_LINE" value="true" />
-      <option name="SPACE_BEFORE_IF_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_WHILE_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_FOR_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_TRY_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_CATCH_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_SWITCH_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_SYNCHRONIZED_PARENTHESES" value="false" />
-    </codeStyleSettings>
-    <codeStyleSettings language="XML">
-      <indentOptions>
-        <option name="CONTINUATION_INDENT_SIZE" value="4" />
-      </indentOptions>
-    </codeStyleSettings>
     <codeStyleSettings language="kotlin">
       <option name="CODE_STYLE_DEFAULTS" value="KOTLIN_OFFICIAL" />
-      <option name="KEEP_FIRST_COLUMN_COMMENT" value="false" />
-      <option name="SPACE_BEFORE_IF_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_WHILE_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_FOR_PARENTHESES" value="false" />
-      <option name="SPACE_BEFORE_CATCH_PARENTHESES" value="false" />
     </codeStyleSettings>
   </code_scheme>
 </component>
