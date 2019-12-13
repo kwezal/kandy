@@ -1,3 +1,6 @@
+[![Download](https://api.bintray.com/packages/kwezal/Kandy/Kandy/images/download.svg)](https://bintray.com/kwezal/Kandy/Kandy/_latestVersion)
+[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
+
 # Kandy
 A **K**otlin library set dedicated to **And**roid platform which will make programming **sweet** again!
 ## Kandy List Views
@@ -33,6 +36,22 @@ val adapter = KandyListAdapter(
 ```
 ### Full example
 For full example, please refer to [this file](https://github.com/Kwezal/Kandy/blob/master/examples/src/main/java/com/kwezal/kandy/ListViewsExampleActivity.kt "ListViewsExampleActivity.kt").
+### Import
+#### Project build.gradle
+```gradle
+repositories {
+    // ...
+    jcenter()
+    maven { url 'https://dl.bintray.com/kwezal/Kandy' } // Temporarily needed (before jcenter verification)
+}
+```
+#### Module build.gradle
+```gradle
+dependencies {
+    implementation("com.kwezal.kandy:listviews:1.0.0@aar")
+            { transitive = true } // Includes RecyclerView dependency
+}
+```
 ## The rest
 Other modules of this set of libraries will be published soon.
 As for now I'd appreciate any kind of feedback or contribution.
