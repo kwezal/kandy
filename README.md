@@ -42,12 +42,12 @@ For full example, please refer to [this file](https://github.com/Kwezal/Kandy/bl
 repositories {
     // ...
     jcenter()
-    maven { url 'https://dl.bintray.com/kwezal/Kandy' } // Temporarily needed (before jcenter verification)
 }
 ```
 #### Module build.gradle
 ```gradle
 dependencies {
+    // ...
     implementation("com.kwezal.kandy:listviews:1.0.0@aar")
             { transitive = true } // Includes RecyclerView dependency
 }
