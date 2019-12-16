@@ -1,6 +1,5 @@
 package com.kwezal.kandy
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
@@ -11,8 +10,6 @@ import com.kwezal.kandy.listviews.*
 import com.kwezal.kandy.listviews.base.AbstractKandyItemView
 import com.kwezal.kandy.listviews.base.AbstractKandyListItem
 import com.kwezal.kandy.listviews.interfaces.IKandyViewHolderCreator
-import splitties.views.dsl.core.Ui
-import splitties.views.dsl.core.setContentView
 
 private const val STRING_VIEW_TYPE = 0
 private const val BOOLEAN_VIEW_TYPE = 1
@@ -22,38 +19,33 @@ class ListViewsExampleActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(ui)
+        setContentView(
+            KandyListView(this).apply {
+                adapter = this@ListViewsExampleActivity.adapter
+                layoutManager = LinearLayoutManager(this@ListViewsExampleActivity)
+            }
+        )
 
         with(adapter) {
-
-            insertCreator {
+            // Item insertion in a minimum number of subclasses approach
+            insertItem(
                 KandyListItem(
                     "String item",
-                    KandyItemView(STRING_VIEW_TYPE) {TextView(this)}
-                ) {itemView -> StringViewHolder(itemView)}
-            }
-
+                    KandyItemView(STRING_VIEW_TYPE) { TextView(this) }
+                ) { itemView -> StringViewHolder(itemView) }
+            )
+            // Item insertion example
             insertItem(BooleanListItem(false))
-
-            insertItem(BooleanListItem(true))
+            // Creator insertion example
+            insertCreator { BooleanListItem(true) }
         }
     }
 
-    private val ui
-        get() = object : Ui {
-
-            override val ctx: Context
-                get() = this@ListViewsExampleActivity
-
-            override val root: View
-                get() = KandyListView(ctx).apply {
-                    adapter = this@ListViewsExampleActivity.adapter
-                    layoutManager = LinearLayoutManager(ctx)
-                }
-        }
-
     companion object {
-
+        /**
+         * The only class needed in a minimum number of subclasses approach.
+         * It displays the given text in a layout containing a single [TextView].
+         */
         private class StringViewHolder(itemView: View) : AbstractDefaultKandyViewHolder<String>(itemView) {
 
             private val textView = itemView as TextView
@@ -66,7 +58,7 @@ class ListViewsExampleActivity : AppCompatActivity() {
         private class BooleanListItem(item: Boolean) : AbstractKandyListItem<Boolean>(item) {
 
             override val createViewHolder: IKandyViewHolderCreator
-                get() = {itemView -> BooleanViewHolder(itemView)}
+                get() = { itemView -> BooleanViewHolder(itemView) }
 
             override val itemView: AbstractKandyItemView
                 get() = KandyItemView(BOOLEAN_VIEW_TYPE) {
@@ -82,9 +74,7 @@ class ListViewsExampleActivity : AppCompatActivity() {
             private val checkBox = itemView as CheckBox
 
             override fun onBind(position: Int, adapter: KandyListAdapter, listItemGetter: () -> BooleanListItem) {
-                with(checkBox) {
-                    isChecked = listItemGetter().item
-                }
+                checkBox.isChecked = listItemGetter().item
             }
         }
     }
