@@ -13,8 +13,7 @@ internal class KandyListItemsManager(items: MutableList<AbstractAnyKandyListItem
     private val mViewTypesMap: MutableMap<Int, Pair<IKandyViewHolderCreator, IKandyItemViewCreator>>
 
     init {
-        mViewTypesMap = TreeMap {o1, o2 -> o1.compareTo(o2)}
-
+        mViewTypesMap = TreeMap { o1, o2 -> o1.compareTo(o2) }
         updateViewTypeKeys(items)
     }
 
@@ -26,7 +25,6 @@ internal class KandyListItemsManager(items: MutableList<AbstractAnyKandyListItem
 
     fun createViewHolder(parent: ViewGroup, viewType: Int): AbstractAnyKandyViewHolder {
         val (viewHolderCreator, viewCreator) = mViewTypesMap[viewType]!!
-
         return viewHolderCreator(parent.context.viewCreator())
     }
 
@@ -59,23 +57,25 @@ internal class KandyListItemsManager(items: MutableList<AbstractAnyKandyListItem
         mItems.removeAt(position)
     }
 
-    fun clear(clearViewTypes: Boolean) {
+    fun clear(clearViewTypes: Boolean = true) {
         mItems.clear()
-
-        if(clearViewTypes)
+        if (clearViewTypes)
             mViewTypesMap.clear()
     }
 
     fun removeUnusedViewTypes() {
-        mViewTypesMap.keys.forEach()
-        {key ->
-            if(mItems.none {it.viewType == key})
-                mViewTypesMap.remove(key)
+        val unusedKeys = HashSet(mViewTypesMap.keys)
+        mItems.forEach { item ->
+            if (unusedKeys.remove(item.viewType) && unusedKeys.isEmpty())
+                return
+        }
+        unusedKeys.forEach { key ->
+            mViewTypesMap.remove(key)
         }
     }
 
     private inline fun updateViewTypeKeys(items: Iterable<AbstractAnyKandyListItem>) {
-        items.forEach {item: AbstractAnyKandyListItem -> updateViewTypeKey(item)}
+        items.forEach { item: AbstractAnyKandyListItem -> updateViewTypeKey(item) }
     }
 
     private inline fun updateViewTypeKey(item: AbstractAnyKandyListItem) {
