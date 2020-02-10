@@ -12,16 +12,15 @@ import com.kwezal.kandy.listviews.interfaces.IKandyListItemCreator
  * @param items Initial list of items
  * @see KandyListAdapterWithSharedData
  */
-open class KandyListAdapter
-    (
+open class KandyListAdapter(
     items: MutableList<out AbstractAnyKandyListItem>
 ) : RecyclerView.Adapter<AbstractAnyKandyViewHolder>() {
-    private val mItemsManager = KandyListItemsManager(items as MutableList<AbstractAnyKandyListItem>)
 
+    private val itemsManager = KandyListItemsManager(items as MutableList<AbstractAnyKandyListItem>)
     /**
      * All list items.
      */
-    val items get() = mItemsManager.getAll()
+    val items get() = itemsManager.getAll()
 
     /**
      * Creates empty list adapter.
@@ -32,25 +31,25 @@ open class KandyListAdapter
     constructor(vararg items: AbstractAnyKandyListItem) : this(mutableListOf(*items))
     constructor(vararg items: IKandyListItemCreator) : this(listOf(*items))
 
-    final override fun getItemCount() = mItemsManager.size
+    final override fun getItemCount() = itemsManager.size
 
-    final override fun getItemViewType(position: Int) = mItemsManager.getItemViewType(position)
+    final override fun getItemViewType(position: Int) = itemsManager.getItemViewType(position)
 
     final override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) =
-        mItemsManager.createViewHolder(parent, viewType)
+        itemsManager.createViewHolder(parent, viewType)
 
     final override fun onBindViewHolder(holder: AbstractAnyKandyViewHolder, position: Int) {
-        holder.delegateOnBind(position, this) {mItemsManager[holder.adapterPosition]}
+        holder.delegateOnBind(position, this) { itemsManager[holder.adapterPosition] }
     }
 
     fun replace(itemAt: Int, with: AbstractAnyKandyListItem) {
-        mItemsManager.replace(itemAt, with)
+        itemsManager.replace(itemAt, with)
         notifyItemChanged(itemAt)
     }
 
     fun insertItem(item: AbstractAnyKandyListItem) {
-        mItemsManager.add(item)
-        notifyItemInserted(mItemsManager.size - 1)
+        itemsManager.add(item)
+        notifyItemInserted(itemsManager.size - 1)
     }
 
     inline fun insertCreator(creator: IKandyListItemCreator) {
@@ -58,16 +57,16 @@ open class KandyListAdapter
     }
 
     fun insertItems(items: Iterable<AbstractAnyKandyListItem>) {
-        mItemsManager.addAll(items)
-        notifyItemRangeInserted(mItemsManager.size - 1, items.count())
+        itemsManager.addAll(items)
+        notifyItemRangeInserted(itemsManager.size - 1, items.count())
     }
 
     inline fun insertCreators(creators: Iterable<IKandyListItemCreator>) {
-        insertItems(creators.map {creator -> creator()})
+        insertItems(creators.map { creator -> creator() })
     }
 
     fun insertItem(position: Int, item: AbstractAnyKandyListItem) {
-        mItemsManager.add(item, position)
+        itemsManager.add(item, position)
         notifyItemInserted(position)
     }
 
@@ -76,16 +75,16 @@ open class KandyListAdapter
     }
 
     fun insertItems(position: Int, items: Collection<AbstractAnyKandyListItem>) {
-        mItemsManager.addAll(items, position)
+        itemsManager.addAll(items, position)
         notifyItemRangeInserted(position, items.size)
     }
 
     inline fun insertCreators(position: Int, creators: Collection<IKandyListItemCreator>) {
-        insertItems(position, creators.map {creator -> creator()})
+        insertItems(position, creators.map { creator -> creator() })
     }
 
     fun removeAt(position: Int) {
-        mItemsManager.removeAt(position)
+        itemsManager.removeAt(position)
         notifyItemRemoved(position)
     }
 
@@ -94,8 +93,8 @@ open class KandyListAdapter
      * @param clearViewTypes If set to `true`, information about all cached view types will be removed too
      */
     fun removeAll(clearViewTypes: Boolean = true) {
-        val size = mItemsManager.size
-        mItemsManager.clear(clearViewTypes)
+        val size = itemsManager.size
+        itemsManager.clear(clearViewTypes)
         notifyItemRangeRemoved(0, size)
     }
 
@@ -105,5 +104,5 @@ open class KandyListAdapter
      * This method can be useful if a lot of view types generation and list items removal/replacement takes place.
      * Otherwise, the impact on performance and memory will be insignificant.
      */
-    fun removeUnusedViewTypes() = mItemsManager.removeUnusedViewTypes()
+    fun removeUnusedViewTypes() = itemsManager.removeUnusedViewTypes()
 }
