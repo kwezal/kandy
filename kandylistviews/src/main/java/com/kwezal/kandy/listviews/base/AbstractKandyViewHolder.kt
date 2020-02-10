@@ -17,7 +17,7 @@ abstract class AbstractKandyViewHolder<AdapterType : KandyListAdapter, ListItemT
     itemView: View
 ) : RecyclerView.ViewHolder(itemView) {
     /**
-     * Called by [KadyListView] to display the data at the specified position.
+     * Called by [KandyListView] to display the data at the specified position.
      * It takes a getter function (instead of a simple reference) as an argument in order to be able to retrieve
      * the proper list item within callbacks, event listeners etc.
      * ## Example
@@ -26,14 +26,11 @@ abstract class AbstractKandyViewHolder<AdapterType : KandyListAdapter, ListItemT
      *     position: Int,
      *     adapter: KandyListAdapter,
      *     listItemGetter: () -> AbstractMutableKandyListItem<Boolean>
-     * )
-     * {
+     * ) {
      *     val itemIsChecked = listItemGetter().item
-     *     with(checkBox)
-     *     {
+     *     with(checkBox) {
      *         isChecked = itemIsChecked // item can be safely used here
-     *         setOnCheckedChangeListener()
-     *         {_, isChecked ->
+     *         setOnCheckedChangeListener { _, isChecked ->
      *             // item should be retrieved again here as this code will not happen immediately
      *             listItemGetter().item = isChecked
      *         }

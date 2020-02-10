@@ -8,7 +8,7 @@ import com.kwezal.kandy.listviews.interfaces.IKandyListItemCreator
  * Highly flexible adapter for the [RecyclerView].
  * It manages the list view by generating appropriate behavior based on the given list items.
  * The adapter overrides [getItemCount], [getItemViewType], [onCreateViewHolder] and [onBindViewHolder] methods,
- * so in most cases there is no need to create a subclass.
+ * so in most cases, there is no need to create a subclass.
  * @param items Initial list of items
  * @see KandyListAdapterWithSharedData
  */
