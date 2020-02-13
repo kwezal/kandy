@@ -9,6 +9,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/examples" />
+            <option value="$PROJECT_DIR$/kandydialogs" />
             <option value="$PROJECT_DIR$/kandylistviews" />
           </set>
         </option>

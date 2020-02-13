@@ -10,9 +10,12 @@ buildscript {
         target_sdk_version = 29
 
         kotlin_version = '1.3.61'
+        appcompat_version = '1.1.0'
+        recycler_view_version = '1.1.0'
+        
         dokka_version = '0.9.17'
-        kandy_version = '1.0.0'
-        kandy_version_code = 1
+        kandy_version = '1.0.1'
+        kandy_version_code = 2
         splitties_version = '3.0.0-alpha06'
 
         artifact_prefix = 'kandy'
