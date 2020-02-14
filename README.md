@@ -1,8 +1,17 @@
-[![Download](https://api.bintray.com/packages/kwezal/Kandy/Kandy/images/download.svg)](https://bintray.com/kwezal/Kandy/Kandy/_latestVersion)
+[![Download](https://api.bintray.com/packages/kwezal/Kandy/listviews/images/download.svg)](https://bintray.com/kwezal/Kandy/listviews/_latestVersion)
 [![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # Kandy
 A **K**otlin library set dedicated to **And**roid platform which will make programming **sweet** again!
+### Repository
+All modules are available on the jcenter. In order to import them, make sure your project includes the appropriate repository.
+#### Project build.gradle
+```gradle
+repositories {
+    // ...
+    jcenter()
+}
+```
 ## Kandy List Views
 Highly flexible list view which will help you to write much less code and spend much less time for such basic thing as list view.
 Forget about ~~writing~~ copy-pasting another `RecyclerView.Adapter`.
@@ -11,7 +20,7 @@ Basically, all you need to do is write a custom view holder for each model you w
 ### Flexibility
 You can use **any** number of **any** types of list items within a single adapter.
 `KandyListAdapter` will take care of defining and managing view types.
-### Comfort
+### Convenience
 `onBind` method of a view holder provide you a type-safe getter of a list item.
 No need to keep an eye on a collection of data you've passed to the list view adapter.
 Let this method retrieve the appropriate object for you (including the inside of event listeners.)
@@ -37,19 +46,28 @@ val adapter = KandyListAdapter(
 ### Full example
 For full example, please refer to [this file](https://github.com/Kwezal/Kandy/blob/master/examples/src/main/java/com/kwezal/kandy/ListViewsExampleActivity.kt "ListViewsExampleActivity.kt").
 ### Import
-#### Project build.gradle
-```gradle
-repositories {
-    // ...
-    jcenter()
-}
-```
 #### Module build.gradle
 ```gradle
 dependencies {
     // ...
-    implementation("com.kwezal.kandy:listviews:1.0.0@aar")
+    implementation("com.kwezal.kandy:listviews:${kandy_version}@aar")
             { transitive = true } // Includes RecyclerView dependency
+}
+```
+## Kandy Dialogs
+Simple DSL-like wrapper for `AlertDialog`s. Not only it makes the code shorter and _prettier_, but also more convenient to use.
+### The simplest example
+```kotlin
+show { dialog("Message", "Title") { positiveButton = button("OK") } }
+```
+### Full example
+For full example, please refer to [this file](https://github.com/Kwezal/Kandy/blob/master/examples/src/main/java/com/kwezal/kandy/DialogsExampleActivity.kt "DialogsExampleActivity.kt").
+### Import
+#### Module build.gradle
+```gradle
+dependencies {
+    // ...
+    implementation("com.kwezal.kandy:dialogs:${kandy_version}@aar")
 }
 ```
 ## The rest
