@@ -29,6 +29,8 @@ dependencies {
     implementation("com.louiscad.splitties:splitties-views-dsl-appcompat:$splitties_version")
 
     // Kandy
-    implementation("com.kwezal.kandy:listviews:1.0.0@aar")
+    implementation("com.kwezal.kandy:listviews:${kandy_version}@aar")
             { transitive = true } // Includes RecyclerView dependency
+    //implementation project(":kandydialogs")
+    implementation("com.kwezal.kandy:dialogs:${kandy_version}@aar")
 }

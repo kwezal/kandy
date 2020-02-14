@@ -5,6 +5,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.widget.LinearLayout
 import androidx.appcompat.app.AppCompatActivity
 import splitties.views.dsl.core.*
 
@@ -21,18 +22,16 @@ class MainActivity : AppCompatActivity() {
 
             override val root: View
                 get() = verticalLayout {
-                    add(
-                        createNavigationButton(
-                            R.string.activity_label_list_views,
-                            ListViewsExampleActivity::class.java
-                        ), lParams(matchParent)
-                    )
+                    addNavigationButton(R.string.activity_label_list_views, ListViewsExampleActivity::class.java)
+                    addNavigationButton(R.string.activity_label_dialogs, DialogsExampleActivity::class.java)
                 }
 
-            private fun createNavigationButton(text: Int, activityClass: Class<out Activity>) =
-                button {
-                    setText(text)
-                    setOnClickListener {ctx.startActivity(Intent(ctx, activityClass))}
-                }
+            private fun LinearLayout.addNavigationButton(text: Int, activityClass: Class<out Activity>) =
+                add(
+                    button {
+                        setText(text)
+                        setOnClickListener { ctx.startActivity(Intent(ctx, activityClass)) }
+                    }, lParams(matchParent)
+                )
         }
 }
