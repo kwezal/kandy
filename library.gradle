@@ -70,3 +70,32 @@ publishing {
         }
     }
 }
+
+bintray {
+    def moduleName = this.project.name
+    
+    def packageName = moduleName.substring(artifact_prefix.length())
+    
+    user = System.getenv('BINTRAY_KWEZAL_USER')
+    key = System.getenv('BINTRAY_KWEZAL_KEY')
+    
+    println(packageName)
+    publications = [ moduleName ]
+
+    pkg {
+        repo = bintray_repo_name
+        name = packageName
+        userOrg = bintray_organization_name
+        licenses = ['Apache-2.0']
+        vcsUrl = "${bintray_github}.git"
+        websiteUrl = bintray_github
+        issueTrackerUrl = "$bintray_github/issues"
+
+        version {
+            name = kandy_version
+            desc = "Kandy $kandy_version"
+            released = new Date()
+            vcsTag = ''
+        }
+    }
+}

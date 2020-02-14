@@ -14,15 +14,14 @@ buildscript {
         recycler_view_version = '1.1.0'
         
         dokka_version = '0.9.17'
-        kandy_version = '1.0.1'
-        kandy_version_code = 2
+        kandy_version = '1.0.0'
+        kandy_version_code = 1
         splitties_version = '3.0.0-alpha06'
 
         artifact_prefix = 'kandy'
         
         bintray_group_id = 'com.kwezal.kandy'
         bintray_repo_name = 'Kandy'
-        bintray_package_name = bintray_repo_name
         bintray_organization_name = 'kwezal'
         bintray_github = 'https://github.com/Kwezal/Kandy'
     }
@@ -52,31 +51,6 @@ allprojects {
 
 task clean(type: Delete) {
     delete rootProject.buildDir
-}
-
-bintray {
-    user = System.getenv('BINTRAY_KWEZAL_USER')
-    key = System.getenv('BINTRAY_KWEZAL_KEY')
-
-    def modules = subprojects.findAll { it.name.startsWith(artifact_prefix) }
-    publications = modules.collect { it.name }
-
-    pkg {
-        repo = bintray_repo_name
-        name = bintray_package_name
-        userOrg = bintray_organization_name
-        licenses = ['Apache-2.0']
-        vcsUrl = "${bintray_github}.git"
-        websiteUrl = bintray_github
-        issueTrackerUrl = "$bintray_github/issues"
-
-        version {
-            name = kandy_version
-            desc = "Kandy $kandy_version"
-            released = new Date()
-            vcsTag = ''
-        }
-    }
 }
 
 task assembleAllKandyModules {
