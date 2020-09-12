@@ -274,9 +274,3 @@ var AlertDialog.Builder.isCancelable: Boolean
     inline set(value) {
         setCancelable(value)
     }
-
-var AlertDialog.Builder.isRecycleOnMeasureEnabled: Boolean
-    inline get() = throw UnsupportedOperationException()
-    inline set(value) {
-        setRecycleOnMeasureEnabled(value)
-    }
