@@ -54,9 +54,34 @@ internal class KandyListItemsManager(
         updateViewTypeKeys(items)
     }
 
-    inline fun removeAt(position: Int) {
-        items.removeAt(position)
+    fun remove(element: AbstractAnyKandyListItem): Int {
+        val idx = items.indexOf(element)
+        if (idx != -1) {
+            items.removeAt(idx)
+        }
+        return idx
     }
+
+    inline fun removeFirst(predicate: (listItem: AbstractAnyKandyListItem) -> Boolean): Int {
+        val idx = items.indexOfFirst(predicate)
+        if (idx != -1) {
+            items.removeAt(idx)
+        }
+        return idx
+    }
+
+    inline fun removeAll(predicate: (index: Int, listItem: AbstractAnyKandyListItem) -> Boolean): List<Int> {
+        val removedIndices = mutableListOf<Int>()
+        items.forEachIndexed { i, listItem ->
+            if(predicate(i, listItem)) {
+                items.removeAt(i)
+                removedIndices += i
+            }
+        }
+        return removedIndices
+    }
+
+    inline fun removeAt(position: Int) = items.removeAt(position)
 
     fun clear(clearViewTypes: Boolean = true) {
         items.clear()

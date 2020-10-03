@@ -88,9 +88,35 @@ open class KandyListAdapter(
         add(position, creators.map { creator -> creator() })
     }
 
-    fun removeAt(position: Int) {
-        itemsManager.removeAt(position)
+    fun remove(element: AbstractAnyKandyListItem) {
+        val idx = itemsManager.remove(element)
+        if (idx != -1) {
+            notifyItemRemoved(idx)
+        }
+    }
+
+    fun removeFirst(predicate: (listItem: AbstractAnyKandyListItem) -> Boolean) {
+        val idx = itemsManager.removeFirst(predicate)
+        if (idx != -1) {
+            notifyItemRemoved(idx)
+        }
+    }
+
+    inline fun removeByModelInstance(instance: Any) {
+        removeFirst { it.item == instance }
+    }
+
+    fun removeAt(position: Int): AbstractAnyKandyListItem {
+        val item = itemsManager.removeAt(position)
         notifyItemRemoved(position)
+        return item
+    }
+
+    fun removeAll(predicate: (index: Int, listItem: AbstractAnyKandyListItem) -> Boolean) {
+        val indices = itemsManager.removeAll(predicate)
+        for(i in indices.lastIndex..0 step -1) {
+            notifyItemRemoved(indices[i])
+        }
     }
 
     /**
