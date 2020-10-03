@@ -17,6 +17,7 @@ open class KandyListAdapter(
 ) : RecyclerView.Adapter<AbstractAnyKandyViewHolder>() {
 
     private val itemsManager = KandyListItemsManager(items as MutableList<AbstractAnyKandyListItem>)
+
     /**
      * All list items.
      */
@@ -47,40 +48,44 @@ open class KandyListAdapter(
         notifyItemChanged(itemAt)
     }
 
-    fun insertItem(item: AbstractAnyKandyListItem) {
+    fun add(item: AbstractAnyKandyListItem) {
         itemsManager.add(item)
         notifyItemInserted(itemsManager.size - 1)
     }
 
-    inline fun insertCreator(creator: IKandyListItemCreator) {
-        insertItem(creator())
+    inline fun add(creator: IKandyListItemCreator) {
+        add(creator())
     }
 
-    fun insertItems(items: Iterable<AbstractAnyKandyListItem>) {
+    @JvmName(name = "addItems")
+    fun add(items: Iterable<AbstractAnyKandyListItem>) {
         itemsManager.addAll(items)
         notifyItemRangeInserted(itemsManager.size - 1, items.count())
     }
 
-    inline fun insertCreators(creators: Iterable<IKandyListItemCreator>) {
-        insertItems(creators.map { creator -> creator() })
+    @JvmName(name = "addCreators")
+    inline fun add(creators: Iterable<IKandyListItemCreator>) {
+        add(creators.map { creator -> creator() })
     }
 
-    fun insertItem(position: Int, item: AbstractAnyKandyListItem) {
+    fun add(position: Int, item: AbstractAnyKandyListItem) {
         itemsManager.add(item, position)
         notifyItemInserted(position)
     }
 
-    inline fun insertCreator(position: Int, creator: IKandyListItemCreator) {
-        insertItem(position, creator())
+    inline fun add(position: Int, creator: IKandyListItemCreator) {
+        add(position, creator())
     }
 
-    fun insertItems(position: Int, items: Collection<AbstractAnyKandyListItem>) {
+    @JvmName(name = "addItems")
+    fun add(position: Int, items: Collection<AbstractAnyKandyListItem>) {
         itemsManager.addAll(items, position)
         notifyItemRangeInserted(position, items.size)
     }
 
-    inline fun insertCreators(position: Int, creators: Collection<IKandyListItemCreator>) {
-        insertItems(position, creators.map { creator -> creator() })
+    @JvmName(name = "addCreators")
+    inline fun add(position: Int, creators: Collection<IKandyListItemCreator>) {
+        add(position, creators.map { creator -> creator() })
     }
 
     fun removeAt(position: Int) {
@@ -105,4 +110,44 @@ open class KandyListAdapter(
      * Otherwise, the impact on performance and memory will be insignificant.
      */
     fun removeUnusedViewTypes() = itemsManager.removeUnusedViewTypes()
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(item)"))
+    inline fun insertItem(item: AbstractAnyKandyListItem) {
+        add(item)
+    }
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(creator)"))
+    inline fun insertCreator(creator: IKandyListItemCreator) {
+        add(creator)
+    }
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(items)"))
+    inline fun insertItems(items: Iterable<AbstractAnyKandyListItem>) {
+        add(items)
+    }
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(creators)"))
+    inline fun insertCreators(creators: Iterable<IKandyListItemCreator>) {
+        add(creators)
+    }
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(position, item)"))
+    inline fun insertItem(position: Int, item: AbstractAnyKandyListItem) {
+        add(position, item)
+    }
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(position, creator)"))
+    inline fun insertCreator(position: Int, creator: IKandyListItemCreator) {
+        add(position, creator)
+    }
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(position, items)"))
+    inline fun insertItems(position: Int, items: Collection<AbstractAnyKandyListItem>) {
+        add(position, items)
+    }
+
+    @Deprecated("This method will be removed in the future", ReplaceWith("add(position, creators)"))
+    inline fun insertCreators(position: Int, creators: Collection<IKandyListItemCreator>) {
+        add(position, creators)
+    }
 }
