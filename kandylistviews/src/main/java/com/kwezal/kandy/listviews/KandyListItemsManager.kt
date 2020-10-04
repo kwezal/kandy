@@ -26,7 +26,7 @@ internal class KandyListItemsManager(
 
     fun createViewHolder(parent: ViewGroup, viewType: Int): AbstractAnyKandyViewHolder {
         val (viewHolderCreator, viewCreator) = viewTypesMap[viewType]!!
-        return viewHolderCreator(parent.context.viewCreator())
+        return viewHolderCreator(parent.context.viewCreator(parent))
     }
 
     fun replace(itemAt: Int, with: AbstractAnyKandyListItem) {
@@ -73,7 +73,7 @@ internal class KandyListItemsManager(
     inline fun removeAll(predicate: (index: Int, listItem: AbstractAnyKandyListItem) -> Boolean): List<Int> {
         val removedIndices = mutableListOf<Int>()
         items.forEachIndexed { i, listItem ->
-            if(predicate(i, listItem)) {
+            if (predicate(i, listItem)) {
                 items.removeAt(i)
                 removedIndices += i
             }

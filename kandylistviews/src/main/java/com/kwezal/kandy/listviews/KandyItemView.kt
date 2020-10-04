@@ -34,4 +34,5 @@ import com.kwezal.kandy.listviews.interfaces.IKandyItemViewCreator
  * The main idea here is to avoid class creation.
  * If some custom behavior is needed, extend [AbstractKandyItemView] instead.
  */
-class KandyItemView(type: Int = 0, override val createView: IKandyItemViewCreator) : AbstractKandyItemView(type)
+class KandyItemView(type: Int = 0, override val createView: IKandyItemViewCreator) :
+    AbstractKandyItemView(type)
