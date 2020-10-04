@@ -72,8 +72,8 @@ internal class KandyListItemsManager(
 
     inline fun removeAll(predicate: (index: Int, listItem: AbstractAnyKandyListItem) -> Boolean): List<Int> {
         val removedIndices = mutableListOf<Int>()
-        items.forEachIndexed { i, listItem ->
-            if (predicate(i, listItem)) {
+        for(i in items.lastIndex downTo 0) {
+            if (predicate(i, items[i])) {
                 items.removeAt(i)
                 removedIndices += i
             }

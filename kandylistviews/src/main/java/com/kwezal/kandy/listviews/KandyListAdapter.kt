@@ -114,8 +114,8 @@ open class KandyListAdapter(
 
     fun removeAll(predicate: (index: Int, listItem: AbstractAnyKandyListItem) -> Boolean) {
         val indices = itemsManager.removeAll(predicate)
-        for(i in indices.lastIndex..0 step -1) {
-            notifyItemRemoved(indices[i])
+        indices.forEach { i ->
+            notifyItemRemoved(i)
         }
     }
 
