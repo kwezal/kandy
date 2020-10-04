@@ -43,7 +43,10 @@ fun Context.create(autoDismiss: Boolean = true, dialogBuilder: DialogBuilder): A
  * @see create
  */
 @JvmName(name = "showDialog")
-inline fun Context.show(autoDismiss: Boolean = true, noinline dialogBuilder: DialogBuilder): AlertDialog =
+inline fun Context.show(
+    autoDismiss: Boolean = true,
+    noinline dialogBuilder: DialogBuilder
+): AlertDialog =
     create(autoDismiss, dialogBuilder).apply { show() }
 
 val AlertDialog.positiveButton: Button? inline get() = getButton(DialogInterface.BUTTON_POSITIVE)
@@ -55,10 +58,11 @@ val AlertDialog.negativeButton: Button? inline get() = getButton(DialogInterface
  * ## Note
  * This method is [DialogContext]-independent,
  * which means that the `autoDismiss` parameter of [create] and [show] methods won't have any effect on this button.
- * If you would like to make use of that parameter, consider using [DialogContext.positiveButton] instead.
+ * If you would like to make use of that parameter, consider using a method of the same name but from inside the [DialogContext] instead.
  * @see AlertDialog.Builder.setPositiveButton
  * @see AlertDialog.Builder.setPositiveButtonIcon
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.positiveButton(
     text: CharSequence? = null,
     icon: Drawable? = null,
@@ -71,6 +75,7 @@ inline fun AlertDialog.Builder.positiveButton(
 /**
  * @see AlertDialog.Builder.positiveButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.positiveButton(
     @StringRes textResource: Int,
     icon: Drawable? = null,
@@ -82,6 +87,7 @@ inline fun AlertDialog.Builder.positiveButton(
 /**
  * @see AlertDialog.Builder.positiveButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.positiveButton(
     text: CharSequence? = null,
     @DrawableRes iconResource: Int,
@@ -93,12 +99,17 @@ inline fun AlertDialog.Builder.positiveButton(
 /**
  * @see AlertDialog.Builder.positiveButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.positiveButton(
     @StringRes textResource: Int,
     @DrawableRes iconResource: Int,
     crossinline onClicked: DialogOnClick = {}
 ) {
-    positiveButton(context.getString(textResource), ContextCompat.getDrawable(context, iconResource), onClicked)
+    positiveButton(
+        context.getString(textResource),
+        ContextCompat.getDrawable(context, iconResource),
+        onClicked
+    )
 }
 
 /**
@@ -106,10 +117,11 @@ inline fun AlertDialog.Builder.positiveButton(
  * ## Note
  * This method is [DialogContext]-independent,
  * which means that the `autoDismiss` parameter of [create] and [show] methods won't have any effect on this button.
- * If you would like to make use of that parameter, consider using [DialogContext.neutralButton] instead.
+ * If you would like to make use of that parameter, consider using a method of the same name but from inside the [DialogContext] instead.
  * @see AlertDialog.Builder.setNeutralButton
  * @see AlertDialog.Builder.setNeutralButtonIcon
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.neutralButton(
     text: CharSequence? = null,
     icon: Drawable? = null,
@@ -122,6 +134,7 @@ inline fun AlertDialog.Builder.neutralButton(
 /**
  * @see AlertDialog.Builder.neutralButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.neutralButton(
     @StringRes textResource: Int,
     icon: Drawable? = null,
@@ -133,6 +146,7 @@ inline fun AlertDialog.Builder.neutralButton(
 /**
  * @see AlertDialog.Builder.neutralButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.neutralButton(
     text: CharSequence? = null,
     @DrawableRes iconResource: Int,
@@ -144,12 +158,17 @@ inline fun AlertDialog.Builder.neutralButton(
 /**
  * @see AlertDialog.Builder.neutralButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.neutralButton(
     @StringRes textResource: Int,
     @DrawableRes iconResource: Int,
     crossinline onClicked: DialogOnClick = {}
 ) {
-    neutralButton(context.getString(textResource), ContextCompat.getDrawable(context, iconResource), onClicked)
+    neutralButton(
+        context.getString(textResource),
+        ContextCompat.getDrawable(context, iconResource),
+        onClicked
+    )
 }
 
 /**
@@ -157,10 +176,11 @@ inline fun AlertDialog.Builder.neutralButton(
  * ## Note
  * This method is [DialogContext]-independent,
  * which means that the `autoDismiss` parameter of [create] and [show] methods won't have any effect on this button.
- * If you would like to make use of that parameter, consider using [DialogContext.negativeButton] instead.
+ * If you would like to make use of that parameter, consider using a method of the same name but from inside the [DialogContext] instead.
  * @see AlertDialog.Builder.setNegativeButton
  * @see AlertDialog.Builder.setNegativeButtonIcon
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.negativeButton(
     text: CharSequence? = null,
     icon: Drawable? = null,
@@ -173,6 +193,7 @@ inline fun AlertDialog.Builder.negativeButton(
 /**
  * @see AlertDialog.Builder.negativeButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.negativeButton(
     @StringRes textResource: Int,
     icon: Drawable? = null,
@@ -184,6 +205,7 @@ inline fun AlertDialog.Builder.negativeButton(
 /**
  * @see AlertDialog.Builder.negativeButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.negativeButton(
     text: CharSequence? = null,
     @DrawableRes iconResource: Int,
@@ -195,12 +217,17 @@ inline fun AlertDialog.Builder.negativeButton(
 /**
  * @see AlertDialog.Builder.negativeButton
  */
+@Deprecated("This method will be removed in the future")
 inline fun AlertDialog.Builder.negativeButton(
     @StringRes textResource: Int,
     @DrawableRes iconResource: Int,
     crossinline onClicked: DialogOnClick = {}
 ) {
-    negativeButton(context.getString(textResource), ContextCompat.getDrawable(context, iconResource), onClicked)
+    negativeButton(
+        context.getString(textResource),
+        ContextCompat.getDrawable(context, iconResource),
+        onClicked
+    )
 }
 
 var AlertDialog.Builder.title: CharSequence?

@@ -20,26 +20,33 @@ typealias DialogOnClick = DialogInterface.(which: Int) -> Unit
  * @param icon the icon to display
  * @param onClicked the listener to use
  */
-class DialogButton(val text: CharSequence, val icon: Drawable? = null, val onClicked: DialogOnClick = {}) {
+class DialogButton(
+    val text: CharSequence,
+    val icon: Drawable? = null,
+    val onClick: DialogOnClick = {}
+) {
 
     constructor(
         ctx: Context,
         @StringRes textResource: Int,
         icon: Drawable? = null,
-        onClicked: DialogOnClick = {}
-    ) : this(ctx.getString(textResource), icon, onClicked)
+        onClick: DialogOnClick = {}
+    ) : this(ctx.getString(textResource), icon, onClick)
 
     constructor(
         ctx: Context,
         text: CharSequence,
         @DrawableRes iconResource: Int,
-        onClicked: DialogOnClick = {}
-    ) : this(text, ContextCompat.getDrawable(ctx, iconResource), onClicked)
+        onClick: DialogOnClick = {}
+    ) : this(text, ContextCompat.getDrawable(ctx, iconResource), onClick)
 
     constructor(
         ctx: Context,
         @StringRes textResource: Int,
         @DrawableRes iconResource: Int,
-        onClicked: DialogOnClick = {}
-    ) : this(ctx.getString(textResource), ContextCompat.getDrawable(ctx, iconResource), onClicked)
+        onClick: DialogOnClick = {}
+    ) : this(ctx.getString(textResource), ContextCompat.getDrawable(ctx, iconResource), onClick)
+
+    @Deprecated("This field will be removed in the future", ReplaceWith("onClick"))
+    inline val onClicked get() = onClick
 }

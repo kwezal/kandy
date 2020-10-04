@@ -8,6 +8,7 @@ import androidx.annotation.DrawableRes
 import androidx.annotation.LayoutRes
 import androidx.annotation.StringRes
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 
 typealias DialogInitializer = (AlertDialog.Builder).() -> Unit
 
@@ -114,40 +115,187 @@ class DialogContext private constructor(val ctx: Context) {
 
     /**
      * Creates the positive button using the given text, icon and click listener.
-     * ## Note
-     * This field is the only way to make use of `autoDismiss` parameter of [Context.create] and [Context.show] methods.
      * @see AlertDialog.Builder.positiveButton
      */
-    var AlertDialog.Builder.positiveButton: DialogButton
+    inline var AlertDialog.Builder.positiveButton: DialogButton
         get() = throw UnsupportedOperationException()
         set(value) {
-            positiveButtonOnClick = value.onClicked
-            positiveButton(value.text, value.icon, value.onClicked)
+            positiveButton(value.text, value.icon, value.onClick)
         }
 
     /**
      * Creates the positive button using the given text, icon and click listener.
-     * ## Note
-     * This field is the only way to make use of `autoDismiss` parameter of [Context.create] and [Context.show] methods.
      * @see AlertDialog.Builder.neutralButton
      */
-    var AlertDialog.Builder.neutralButton: DialogButton
+    inline var AlertDialog.Builder.neutralButton: DialogButton
         get() = throw UnsupportedOperationException()
         set(value) {
-            neutralButtonOnClick = value.onClicked
-            neutralButton(value.text, value.icon, value.onClicked)
+            neutralButton(value.text, value.icon, value.onClick)
         }
 
     /**
      * Creates the positive button using the given text, icon and click listener.
-     * ## Note
-     * This field is the only way to make use of `autoDismiss` parameter of [Context.create] and [Context.show] methods.
      * @see AlertDialog.Builder.negativeButton
      */
-    var AlertDialog.Builder.negativeButton: DialogButton
+    inline var AlertDialog.Builder.negativeButton: DialogButton
         get() = throw UnsupportedOperationException()
         set(value) {
-            negativeButtonOnClick = value.onClicked
-            negativeButton(value.text, value.icon, value.onClicked)
+            negativeButton(value.text, value.icon, value.onClick)
         }
+
+    /**
+     * Creates the positive button using the given text, icon and click listener.
+     * @see AlertDialog.Builder.setPositiveButton
+     * @see AlertDialog.Builder.setPositiveButtonIcon
+     */
+    fun AlertDialog.Builder.positiveButton(
+        text: CharSequence? = null,
+        icon: Drawable? = null,
+        onClick: DialogOnClick = {}
+    ) {
+        positiveButtonOnClick = onClick
+        setPositiveButton(text) { dialog, which -> dialog.onClick(which) }
+        icon?.let { setPositiveButtonIcon(it) }
+    }
+
+    /**
+     * @see AlertDialog.Builder.positiveButton
+     */
+    inline fun AlertDialog.Builder.positiveButton(
+        @StringRes textResource: Int,
+        icon: Drawable? = null,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        positiveButton(context.getString(textResource), icon, onClick)
+    }
+
+    /**
+     * @see AlertDialog.Builder.positiveButton
+     */
+    inline fun AlertDialog.Builder.positiveButton(
+        text: CharSequence? = null,
+        @DrawableRes iconResource: Int,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        positiveButton(text, ContextCompat.getDrawable(context, iconResource), onClick)
+    }
+
+    /**
+     * @see AlertDialog.Builder.positiveButton
+     */
+    inline fun AlertDialog.Builder.positiveButton(
+        @StringRes textResource: Int,
+        @DrawableRes iconResource: Int,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        positiveButton(
+            context.getString(textResource),
+            ContextCompat.getDrawable(context, iconResource),
+            onClick
+        )
+    }
+
+    /**
+     * Creates the neutral button using the given text, icon and click listener.
+     * @see AlertDialog.Builder.setNeutralButton
+     * @see AlertDialog.Builder.setNeutralButtonIcon
+     */
+    fun AlertDialog.Builder.neutralButton(
+        text: CharSequence? = null,
+        icon: Drawable? = null,
+        onClick: DialogOnClick = {}
+    ) {
+        neutralButtonOnClick = onClick
+        setNeutralButton(text) { dialog, which -> dialog.onClick(which) }
+        icon?.let { setNeutralButtonIcon(it) }
+    }
+
+    /**
+     * @see AlertDialog.Builder.neutralButton
+     */
+    inline fun AlertDialog.Builder.neutralButton(
+        @StringRes textResource: Int,
+        icon: Drawable? = null,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        neutralButton(context.getString(textResource), icon, onClick)
+    }
+
+    /**
+     * @see AlertDialog.Builder.neutralButton
+     */
+    inline fun AlertDialog.Builder.neutralButton(
+        text: CharSequence? = null,
+        @DrawableRes iconResource: Int,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        neutralButton(text, ContextCompat.getDrawable(context, iconResource), onClick)
+    }
+
+    /**
+     * @see AlertDialog.Builder.neutralButton
+     */
+    inline fun AlertDialog.Builder.neutralButton(
+        @StringRes textResource: Int,
+        @DrawableRes iconResource: Int,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        neutralButton(
+            context.getString(textResource),
+            ContextCompat.getDrawable(context, iconResource),
+            onClick
+        )
+    }
+
+    /**
+     * Creates the negative button using the given text, icon and click listener.
+     * @see AlertDialog.Builder.setNegativeButton
+     * @see AlertDialog.Builder.setNegativeButtonIcon
+     */
+    fun AlertDialog.Builder.negativeButton(
+        text: CharSequence? = null,
+        icon: Drawable? = null,
+        onClick: DialogOnClick = {}
+    ) {
+        negativeButtonOnClick = onClick
+        setNegativeButton(text) { dialog, which -> dialog.onClick(which) }
+        icon?.let { setNegativeButtonIcon(it) }
+    }
+
+    /**
+     * @see AlertDialog.Builder.negativeButton
+     */
+    inline fun AlertDialog.Builder.negativeButton(
+        @StringRes textResource: Int,
+        icon: Drawable? = null,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        negativeButton(context.getString(textResource), icon, onClick)
+    }
+
+    /**
+     * @see AlertDialog.Builder.negativeButton
+     */
+    inline fun AlertDialog.Builder.negativeButton(
+        text: CharSequence? = null,
+        @DrawableRes iconResource: Int,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        negativeButton(text, ContextCompat.getDrawable(context, iconResource), onClick)
+    }
+
+    /**
+     * @see AlertDialog.Builder.negativeButton
+     */
+    inline fun AlertDialog.Builder.negativeButton(
+        @StringRes textResource: Int,
+        @DrawableRes iconResource: Int,
+        noinline onClick: DialogOnClick = {}
+    ) {
+        negativeButton(
+            context.getString(textResource),
+            ContextCompat.getDrawable(context, iconResource),
+            onClick
+        )
+    }
 }

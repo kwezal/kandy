@@ -18,8 +18,8 @@ class DialogsExampleActivity : AppCompatActivity() {
 
         show {
             dialog("Welcome to the Dialogs Example Activity!", "Greetings!") {
-                positiveButton = button("Thanks")
-                negativeButton = button("I'm outta here") { finish() }
+                positiveButton("Thanks")
+                negativeButton("I'm outta here") { finish() }
             }
         }
     }
@@ -40,17 +40,20 @@ class DialogsExampleActivity : AppCompatActivity() {
                                 message = "Would you like to open second dialog?"
 
                                 // Open a new dialog, but don't close the previous one
-                                positiveButton = button("Definitely!") {
+                                positiveButton("Definitely!") {
                                     show {
-                                        dialog("I'm very glad you wanted to see me!", "Second dialog") {
-                                            positiveButton = button("The pleasure is mine")
+                                        dialog(
+                                            "I'm very glad you wanted to see me!",
+                                            "Second dialog"
+                                        ) {
+                                            positiveButton("The pleasure is mine")
                                         }
                                     }
                                 }
                                 // Do nothing on click
-                                neutralButton = button("Let me think")
+                                neutralButton("Let me think")
                                 // Close the dialog on click
-                                negativeButton = button("No, it's enough") { dismiss() }
+                                negativeButton("No, it's enough") { dismiss() }
                             }
                         }
 
@@ -63,15 +66,19 @@ class DialogsExampleActivity : AppCompatActivity() {
                                 iconResource = R.mipmap.ic_launcher
                                 isCancelable = false
 
-                                positiveButton = button("Positive", R.mipmap.ic_launcher)
-                                neutralButton = button("Neutral", R.mipmap.ic_launcher)
-                                negativeButton = button("Negative", R.mipmap.ic_launcher)
+                                positiveButton("Positive", R.mipmap.ic_launcher)
+                                neutralButton("Neutral", R.mipmap.ic_launcher)
+                                negativeButton("Negative", R.mipmap.ic_launcher)
                             }
                         }
                     }
 
                     addDialogButton("Custom check box view") {
-                        show { customViewDialog(CheckBox(ctx).apply { text = "Useless check box" }) }
+                        show {
+                            customViewDialog(CheckBox(ctx).apply {
+                                text = "Useless check box"
+                            })
+                        }
                     }
 
                     addDialogButton("Custom button view") {
@@ -86,9 +93,12 @@ class DialogsExampleActivity : AppCompatActivity() {
                     // Show the dialog using string resources only #1
                     addDialogButton("Exit") {
                         show {
-                            dialog(R.string.dialog_message_exit_confirmation, R.string.dialog_title_exit_confirmation) {
-                                positiveButton = button(R.string.exit) { finish() }
-                                negativeButton = button(R.string.stay)
+                            dialog(
+                                R.string.dialog_message_exit_confirmation,
+                                R.string.dialog_title_exit_confirmation
+                            ) {
+                                positiveButton(R.string.exit) { finish() }
+                                negativeButton(R.string.stay)
                             }
                         }
                     }
@@ -99,8 +109,8 @@ class DialogsExampleActivity : AppCompatActivity() {
                                 titleResource = R.string.dialog_title_exit_confirmation
                                 messageResource = R.string.dialog_message_exit_confirmation
 
-                                positiveButton = button(R.string.exit) { finish() }
-                                negativeButton = button(R.string.stay)
+                                positiveButton(R.string.exit) { finish() }
+                                negativeButton(R.string.stay)
                             }
                         }
                     }
