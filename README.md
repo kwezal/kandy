@@ -1,5 +1,6 @@
+[![API 16](https://img.shields.io/badge/API-16%2B-blue.svg?style=flat)]()
 [![Download](https://api.bintray.com/packages/kwezal/Kandy/listviews/images/download.svg)](https://bintray.com/kwezal/Kandy/listviews/_latestVersion)
-[![GitHub license](https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
+[![Apache License 2.0](https://img.shields.io/badge/License-Apache%20License%202.0-blue.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
 
 # Kandy
 A **K**otlin library set dedicated to **And**roid platform which will make programming **sweet** again!
@@ -39,8 +40,8 @@ class StringViewHolder(itemView: View) : AbstractDefaultKandyViewHolder<String>(
 val adapter = KandyListAdapter(
     KandyListItem(
         "String item",
-        KandyItemView {TextView(this)}
-    ) {itemView -> StringViewHolder(itemView)}
+        KandyItemView { TextView(this) }
+    ) { itemView -> StringViewHolder(itemView) }
 )
 ```
 ### Full example
@@ -58,7 +59,7 @@ dependencies {
 Simple DSL-like wrapper for `AlertDialog`s. Not only it makes the code shorter and _prettier_, but also more convenient to use.
 ### The simplest example
 ```kotlin
-show { dialog("Message", "Title") { positiveButton = button("OK") } }
+show { dialog("Message", "Title") { positiveButton("OK") } }
 ```
 ### Full example
 For full example, please refer to [this file](https://github.com/Kwezal/Kandy/blob/master/examples/src/main/java/com/kwezal/kandy/DialogsExampleActivity.kt "DialogsExampleActivity.kt").
