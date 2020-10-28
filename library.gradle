@@ -1,31 +1,31 @@
-apply plugin: 'com.android.library'
-apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
-apply plugin: 'com.github.dcendents.android-maven'
-apply plugin: 'org.jetbrains.dokka-android'
+apply plugin: "com.android.library"
+apply plugin: "kotlin-android"
+apply plugin: "kotlin-android-extensions"
+apply plugin: "com.github.dcendents.android-maven"
+apply plugin: "org.jetbrains.dokka-android"
 
 android {
-    compileSdkVersion target_sdk_version
-    buildToolsVersion build_tools_version
+    compileSdkVersion Versions.compileSdk
+    buildToolsVersion Versions.buildTools
 
     defaultConfig {
-        minSdkVersion min_sdk_version
-        targetSdkVersion target_sdk_version
-        versionCode kandy_version_code
-        versionName kandy_version
+        minSdkVersion Versions.minSdk
+        targetSdkVersion Versions.compileSdk
+        versionCode Versions.kandyCode
+        versionName Versions.kandy
     }
 
     buildTypes {
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro"
         }
     }
 }
 
 dependencies {
     // Kotlin
-    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${Versions.kotlin}"
 }
 
 repositories {
@@ -33,37 +33,38 @@ repositories {
 }
 
 dokka {
-    outputFormat = 'javadoc'
+    outputFormat = "javadoc"
     outputDirectory = "$buildDir/javadoc"
 }
 
 task generateSourcesJar(type: Jar) {
     from android.sourceSets.main.java.srcDirs
-    archiveClassifier = 'sources'
+    archiveClassifier = "sources"
 }
 
 task generateJavadocsJar(type: Jar) {
     from tasks.dokka
-    archiveClassifier = 'javadoc'
+    archiveClassifier = "javadoc"
 }
 
 publishing {
     publications {
         def moduleName = project.name
-        def libraryName = moduleName.substring(artifact_prefix.length())
+        def libraryName = moduleName.substring(Publishing.artifactPrefix.length())
         "$moduleName"(MavenPublication) {
             artifactId = libraryName
             artifact("$buildDir/outputs/aar/$moduleName-release.aar")
             artifact generateSourcesJar
             artifact generateJavadocsJar
             pom.withXml {
-                def dependenciesNode = asNode().getAt('dependencies')[0] ?: asNode().appendNode('dependencies')
+                def dependenciesNode = asNode().getAt("dependencies")[0]
+                        ?: asNode().appendNode("dependencies")
                 configurations.implementation.allDependencies.each {
-                    if(it.name != 'unspecified') {
-                        def dependencyNode = dependenciesNode.appendNode('dependency')
-                        dependencyNode.appendNode('groupId', it.group)
-                        dependencyNode.appendNode('artifactId', it.name)
-                        dependencyNode.appendNode('version', it.version)
+                    if (it.name != "unspecified") {
+                        def dependencyNode = dependenciesNode.appendNode("dependency")
+                        dependencyNode.appendNode("groupId", it.group)
+                        dependencyNode.appendNode("artifactId", it.name)
+                        dependencyNode.appendNode("version", it.version)
                     }
                 }
             }
@@ -73,29 +74,29 @@ publishing {
 
 bintray {
     def moduleName = this.project.name
-    
-    def packageName = moduleName.substring(artifact_prefix.length())
-    
-    user = System.getenv('BINTRAY_KWEZAL_USER')
-    key = System.getenv('BINTRAY_KWEZAL_KEY')
-    
+
+    def packageName = moduleName.substring(Publishing.artifactPrefix.length())
+
+    user = System.getenv("BINTRAY_KWEZAL_USER")
+    key = System.getenv("BINTRAY_KWEZAL_KEY")
+
     println(packageName)
-    publications = [ moduleName ]
+    publications = [moduleName]
 
     pkg {
-        repo = bintray_repo_name
+        repo = Publishing.repoName
         name = packageName
-        userOrg = bintray_organization_name
-        licenses = ['Apache-2.0']
-        vcsUrl = "${bintray_github}.git"
-        websiteUrl = bintray_github
-        issueTrackerUrl = "$bintray_github/issues"
+        userOrg = Publishing.organizationName
+        licenses = ["Apache-2.0"]
+        vcsUrl = "${Publishing.github}.git"
+        websiteUrl = Publishing.github
+        issueTrackerUrl = "${Publishing.github}/issues"
 
         version {
-            name = kandy_version
-            desc = "Kandy $kandy_version"
+            name = Versions.kandy
+            desc = "Kandy ${Versions.kandy}"
             released = new Date()
-            vcsTag = ''
+            vcsTag = ""
         }
     }
 }
