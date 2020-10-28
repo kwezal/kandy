@@ -24,6 +24,17 @@ android {
         }
     }
 
+    flavorDimensions("librarySource")
+    productFlavors {
+        create("local") {
+            setDimension("librarySource")
+        }
+
+        create("published") {
+            setDimension("librarySource")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
@@ -45,11 +56,11 @@ dependencies {
     implementation("com.louiscad.splitties:splitties-views-dsl-appcompat:${Versions.splitties}")
 
     // Kandy dev
-//    implementation(project(":kandylistviews"))
-//    implementation(project(":kandydialogs"))
+    "localImplementation"(project(":kandylistviews"))
+    "localImplementation"(project(":kandydialogs"))
 
     // Kandy prod
-    implementation("com.kwezal.kandy:listviews:${Versions.kandy}@aar")
+    "publishedImplementation"("com.kwezal.kandy:listviews:${Versions.kandy}@aar")
             { isTransitive = true } // Includes RecyclerView dependency
-    implementation("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
+    "publishedImplementation"("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
 }
