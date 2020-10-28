@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/examples" />
             <option value="$PROJECT_DIR$/kandydialogs" />
             <option value="$PROJECT_DIR$/kandylistviews" />
+            <option value="$PROJECT_DIR$/kandylogs" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
