@@ -13,6 +13,8 @@ android {
         targetSdkVersion Versions.compileSdk
         versionCode Versions.kandyCode
         versionName Versions.kandy
+
+        consumerProguardFile("consumer-rules.pro")
     }
 
     buildTypes {

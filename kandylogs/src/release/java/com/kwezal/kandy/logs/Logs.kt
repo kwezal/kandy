@@ -1,9 +1,12 @@
+@file:JvmName("Logs")
+
 package com.kwezal.kandy.logs
 
-inline fun Any.logV(msg: String, tr: Throwable? = null) {}
-inline fun Any.logD(msg: String, tr: Throwable? = null) {}
-inline fun Any.logI(msg: String, tr: Throwable? = null) {}
-inline fun Any.logW(msg: String, tr: Throwable? = null) {}
-inline fun Any.logE(msg: String, tr: Throwable? = null) {}
-inline fun Any.logWtf(msg: String, tr: Throwable? = null) {}
+inline fun Any.logV(tr: Throwable? = null, msg: () -> String) {}
+inline fun Any.logD(tr: Throwable? = null, msg: () -> String) {}
+inline fun Any.logI(tr: Throwable? = null, msg: () -> String) {}
+inline fun Any.logW(tr: Throwable? = null, msg: () -> String) {}
+inline fun Any.logE(tr: Throwable? = null, msg: () -> String) {}
+inline fun Any.logWtf(tr: Throwable? = null, msg: () -> String) {}
+
 inline val Any.tag get() = ""
