@@ -8,15 +8,26 @@ android {
     compileSdkVersion(Versions.compileSdk)
     buildToolsVersion = Versions.buildTools
 
+    signingConfigs {
+        create("config") {
+            keyAlias = "key"
+            keyPassword = file("../key-password.txt").readText()
+            storeFile = file("../keystore.jks")
+            storePassword = file("../store-password.txt").readText()
+        }
+    }
+
     defaultConfig {
         applicationId = "com.kwezal.kandy"
         minSdkVersion(Versions.minSdk)
         targetSdkVersion(Versions.compileSdk)
+
+        signingConfig = signingConfigs.getByName("config")
     }
 
     buildTypes {
         getByName("release") {
-            isMinifyEnabled = false
+            isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
@@ -56,11 +67,13 @@ dependencies {
     implementation("com.louiscad.splitties:splitties-views-dsl-appcompat:${Versions.splitties}")
 
     // Kandy dev
-    "localImplementation"(project(":kandylistviews"))
     "localImplementation"(project(":kandydialogs"))
+    "localImplementation"(project(":kandylistviews"))
+    "localImplementation"(project(":kandylogs"))
 
     // Kandy prod
+    "publishedImplementation"("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
     "publishedImplementation"("com.kwezal.kandy:listviews:${Versions.kandy}@aar")
             { isTransitive = true } // Includes RecyclerView dependency
-    "publishedImplementation"("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
+    "publishedImplementation"("com.kwezal.kandy:logs:${Versions.kandy}@aar")
 }

@@ -12,3 +12,6 @@
 /captures
 .externalNativeBuild
 /buildSrc/build/
+/keystore.jks
+/key-password.txt
+/store-password.txt
