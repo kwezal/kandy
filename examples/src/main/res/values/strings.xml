@@ -1,12 +1,13 @@
 <resources>
     <string name="app_name">Kandy Examples</string>
 
-    <string name="stay">Stay</string>
     <string name="exit">Exit</string>
+    <string name="stay">Stay</string>
 
-    <string name="activity_label_list_views">List Views Example</string>
     <string name="activity_label_dialogs">Dialogs Example</string>
+    <string name="activity_label_list_views">List Views Example</string>
+    <string name="activity_label_logs">Logs Example</string>
 
-    <string name="dialog_title_exit_confirmation">You\'re approaching the exit…</string>
     <string name="dialog_message_exit_confirmation">Are you leaving already?</string>
+    <string name="dialog_title_exit_confirmation">You\'re approaching the exit…</string>
 </resources>

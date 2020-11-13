@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
                 get() = verticalLayout {
                     addNavigationButton(R.string.activity_label_list_views, ListViewsExampleActivity::class.java)
                     addNavigationButton(R.string.activity_label_dialogs, DialogsExampleActivity::class.java)
+                    addNavigationButton(R.string.activity_label_logs, LogsExampleActivity::class.java)
                 }
 
             private fun LinearLayout.addNavigationButton(text: Int, activityClass: Class<out Activity>) =
