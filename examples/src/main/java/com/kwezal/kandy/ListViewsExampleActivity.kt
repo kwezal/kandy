@@ -41,51 +41,49 @@ class ListViewsExampleActivity : AppCompatActivity() {
         }
     }
 
-    companion object {
-        /**
-         * The only class needed in a minimum number of subclasses approach.
-         * It displays the given text in a layout containing a single [TextView].
-         */
-        private class StringViewHolder(itemView: View) :
-            AbstractDefaultKandyViewHolder<String>(itemView) {
+    /**
+     * The only class needed in a minimum number of subclasses approach.
+     * It displays the given text in a layout containing a single [TextView].
+     */
+    private class StringViewHolder(itemView: View) :
+        AbstractDefaultKandyViewHolder<String>(itemView) {
 
-            private val textView = itemView as TextView
+        private val textView = itemView as TextView
 
-            override fun onBind(
-                position: Int,
-                adapter: KandyListAdapter,
-                listItemGetter: () -> KandyListItem<String>
-            ) {
-                textView.text = listItemGetter().item
-            }
+        override fun onBind(
+            position: Int,
+            adapter: KandyListAdapter,
+            listItemGetter: () -> KandyListItem<String>
+        ) {
+            textView.text = listItemGetter().item
         }
+    }
 
-        private class BooleanListItem(item: Boolean) : AbstractKandyListItem<Boolean>(item) {
+    private class BooleanListItem(item: Boolean) : AbstractKandyListItem<Boolean>(item) {
 
-            override val createViewHolder: IKandyViewHolderCreator
-                get() = { itemView -> BooleanViewHolder(itemView) }
+        override val createViewHolder: IKandyViewHolderCreator
+            get() = { itemView -> BooleanViewHolder(itemView) }
 
-            override val itemView: AbstractKandyItemView
-                get() = KandyItemView(BOOLEAN_VIEW_TYPE) {
-                    CheckBox(this).apply {
-                        text = "Boolean item"
-                        isEnabled = false
-                    }
+        override val itemView: AbstractKandyItemView
+            get() = KandyItemView(BOOLEAN_VIEW_TYPE) {
+                CheckBox(this).apply {
+                    text = "Boolean item"
+                    isEnabled = false
                 }
-        }
-
-        private class BooleanViewHolder(itemView: View) :
-            AbstractKandyAdapterViewHolder<BooleanListItem>(itemView) {
-
-            private val checkBox = itemView as CheckBox
-
-            override fun onBind(
-                position: Int,
-                adapter: KandyListAdapter,
-                listItemGetter: () -> BooleanListItem
-            ) {
-                checkBox.isChecked = listItemGetter().item
             }
+    }
+
+    private class BooleanViewHolder(itemView: View) :
+        AbstractKandyAdapterViewHolder<BooleanListItem>(itemView) {
+
+        private val checkBox = itemView as CheckBox
+
+        override fun onBind(
+            position: Int,
+            adapter: KandyListAdapter,
+            listItemGetter: () -> BooleanListItem
+        ) {
+            checkBox.isChecked = listItemGetter().item
         }
     }
 }

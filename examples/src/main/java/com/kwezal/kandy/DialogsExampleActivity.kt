@@ -24,7 +24,7 @@ class DialogsExampleActivity : AppCompatActivity() {
         }
     }
 
-    private val ui
+    private inline val ui
         get() = object : Ui {
             override val ctx: Context
                 get() = this@DialogsExampleActivity
