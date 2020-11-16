@@ -6,8 +6,8 @@
 A **K**otlin library set dedicated to **And**roid platform which will make programming **sweet** again!
 ### Repository
 All modules are available on the jcenter. In order to import them, make sure your project includes the appropriate repository.
-#### Project build.gradle
-```gradle
+#### Project build.gradle.kts
+```kotlin
 repositories {
     // ...
     jcenter()
@@ -47,12 +47,12 @@ val adapter = KandyListAdapter(
 ### Full example
 For full example, please refer to [this file](https://github.com/Kwezal/Kandy/blob/master/examples/src/main/java/com/kwezal/kandy/ListViewsExampleActivity.kt "ListViewsExampleActivity.kt").
 ### Import
-#### Module build.gradle
-```gradle
+#### Module build.gradle.kts
+```kotlin
 dependencies {
     // ...
-    implementation("com.kwezal.kandy:listviews:${kandy_version}@aar")
-            { transitive = true } // Includes RecyclerView dependency
+    implementation("com.kwezal.kandy:listviews:${Versions.kandy}@aar")
+            { isTransitive = true } // Includes RecyclerView dependency
 }
 ```
 ## Kandy Dialogs
@@ -64,12 +64,26 @@ show { dialog("Message", "Title") { positiveButton("OK") } }
 ### Full example
 For full example, please refer to [this file](https://github.com/Kwezal/Kandy/blob/master/examples/src/main/java/com/kwezal/kandy/DialogsExampleActivity.kt "DialogsExampleActivity.kt").
 ### Import
-#### Module build.gradle
-```gradle
+#### Module build.gradle.kts
+```kotlin
 dependencies {
     // ...
-    implementation("com.kwezal.kandy:dialogs:${kandy_version}@aar")
+    implementation("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
 }
+```
+### Kandy Logs
+Android logs made so super simple you'll KISS them. No installation required. Automatic tag generation. Featherweight. No runtime overhead on production.
+### The simplest example
+```kotlin
+logD { "Message" }
+```
+### Full example
+For full example, please refer to [this file](https://github.com/Kwezal/Kandy/blob/master/examples/src/main/java/com/kwezal/kandy/LogsExampleActivity.kt "LogsExampleActivity.kt").
+### Import
+#### Module build.gradle.kts
+```kotlin
+debugImplementation("com.kwezal.kandy:logs-debug:${Versions.kandy}@aar")
+releaseImplementation("com.kwezal.kandy:logs-release:${Versions.kandy}@aar")
 ```
 ## The rest
 Other modules of this set of libraries will be published soon.
