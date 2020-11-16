@@ -56,6 +56,11 @@ android {
     }
 }
 
+configurations {
+    create("publishedDebugImplementation")
+    create("publishedReleaseImplementation")
+}
+
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
     implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
@@ -75,5 +80,6 @@ dependencies {
     "publishedImplementation"("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
     "publishedImplementation"("com.kwezal.kandy:listviews:${Versions.kandy}@aar")
             { isTransitive = true } // Includes RecyclerView dependency
-    "publishedImplementation"("com.kwezal.kandy:logs:${Versions.kandy}@aar")
+    "publishedDebugImplementation"("com.kwezal.kandy:logs-debug:${Versions.kandy}@aar")
+    "publishedReleaseImplementation"("com.kwezal.kandy:logs-release:${Versions.kandy}@aar")
 }
