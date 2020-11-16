@@ -1,5 +1,5 @@
-apply(plugin="com.jfrog.bintray")
-apply(plugin="maven-publish")
+apply(plugin = "com.jfrog.bintray")
+apply(plugin = "maven-publish")
 
 buildscript {
     repositories {
@@ -33,7 +33,14 @@ tasks.register("assembleAllKandyModules") {
     group = "publishing"
 
     val modules = subprojects.filter { it.name.startsWith(Publishing.artifactPrefix) }
+
     modules.forEach {
+        // Remove prefix
+        val id = it.name.substring(Publishing.artifactPrefix.length)
+
+        if (Module.byId(id)?.hasDebugVariant == true) {
+            dependsOn("${it.name}:assembleDebug")
+        }
         dependsOn("${it.name}:assembleRelease")
     }
 }
