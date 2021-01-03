@@ -2,5 +2,5 @@ apply(from = "../library.gradle")
 
 dependencies {
     // Recycler View
-    "api"("androidx.recyclerview:recyclerview:${Versions.recyclerView}")
+    "api"("androidx.recyclerview:recyclerview:${Version.recyclerView}")
 }

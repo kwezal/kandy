@@ -5,8 +5,8 @@ plugins {
 }
 
 android {
-    compileSdkVersion(Versions.compileSdk)
-    buildToolsVersion = Versions.buildTools
+    compileSdkVersion(Version.compileSdk)
+    buildToolsVersion = Version.buildTools
 
     signingConfigs {
         create("config") {
@@ -19,8 +19,8 @@ android {
 
     defaultConfig {
         applicationId = "com.kwezal.kandy"
-        minSdkVersion(Versions.minSdk)
-        targetSdkVersion(Versions.compileSdk)
+        minSdkVersion(Version.minSdk)
+        targetSdkVersion(Version.compileSdk)
 
         signingConfig = signingConfigs.getByName("config")
     }
@@ -63,13 +63,13 @@ configurations {
 
 dependencies {
     implementation(fileTree(mapOf("dir" to "libs", "include" to listOf("*.jar"))))
-    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Versions.kotlin}")
-    implementation("androidx.core:core-ktx:${Versions.coreKtx}")
-    implementation("androidx.appcompat:appcompat:${Versions.appCompat}")
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:${Version.kotlin}")
+    implementation("androidx.core:core-ktx:${Version.coreKtx}")
+    implementation("androidx.appcompat:appcompat:${Version.appCompat}")
 
     // Splitties
-    implementation("com.louiscad.splitties:splitties-views-dsl:${Versions.splitties}")
-    implementation("com.louiscad.splitties:splitties-views-dsl-appcompat:${Versions.splitties}")
+    implementation("com.louiscad.splitties:splitties-views-dsl:${Version.splitties}")
+    implementation("com.louiscad.splitties:splitties-views-dsl-appcompat:${Version.splitties}")
 
     // Kandy dev
     "localImplementation"(project(":kandydialogs"))
@@ -77,9 +77,9 @@ dependencies {
     "localImplementation"(project(":kandylogs"))
 
     // Kandy prod
-    "publishedImplementation"("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
-    "publishedImplementation"("com.kwezal.kandy:listviews:${Versions.kandy}@aar")
+    "publishedImplementation"("com.kwezal.kandy:dialogs:${Version.kandy}@aar")
+    "publishedImplementation"("com.kwezal.kandy:listviews:${Version.kandy}@aar")
             { isTransitive = true } // Includes RecyclerView dependency
-    "publishedDebugImplementation"("com.kwezal.kandy:logs-debug:${Versions.kandy}@aar")
-    "publishedReleaseImplementation"("com.kwezal.kandy:logs-release:${Versions.kandy}@aar")
+    "publishedDebugImplementation"("com.kwezal.kandy:logs-debug:${Version.kandy}@aar")
+    "publishedReleaseImplementation"("com.kwezal.kandy:logs-release:${Version.kandy}@aar")
 }

@@ -9,16 +9,16 @@ buildscript {
 
     dependencies {
         classpath("com.android.tools.build:gradle:4.0.2")
-        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${Version.kotlin}")
         classpath("com.github.dcendents:android-maven-gradle-plugin:2.1")
         classpath("com.jfrog.bintray.gradle:gradle-bintray-plugin:1.8.4")
-        classpath("org.jetbrains.dokka:dokka-android-gradle-plugin:${Versions.dokka}")
+        classpath("org.jetbrains.dokka:dokka-android-gradle-plugin:${Version.dokka}")
     }
 }
 
 allprojects {
     group = Publishing.groupId
-    version = Versions.kandy
+    version = Version.kandy
     repositories {
         google()
         jcenter()
