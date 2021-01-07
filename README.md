@@ -72,7 +72,7 @@ For full example, please refer to [this file](https://github.com/Kwezal/Kandy/bl
 ```kotlin
 dependencies {
     // ...
-    implementation("com.kwezal.kandy:listviews:${Versions.kandy}@aar")
+    implementation("com.kwezal.kandy:listviews:${Version.kandy}@aar")
             { isTransitive = true } // Includes RecyclerView dependency
 }
 ```
@@ -98,7 +98,7 @@ For full example, please refer to [this file](https://github.com/Kwezal/Kandy/bl
 ```kotlin
 dependencies {
     // ...
-    implementation("com.kwezal.kandy:dialogs:${Versions.kandy}@aar")
+    implementation("com.kwezal.kandy:dialogs:${Version.kandy}@aar")
 }
 ```
 
@@ -121,8 +121,8 @@ For full example, please refer to [this file](https://github.com/Kwezal/Kandy/bl
 #### Module build.gradle.kts
 
 ```kotlin
-debugImplementation("com.kwezal.kandy:logs-debug:${Versions.kandy}@aar")
-releaseImplementation("com.kwezal.kandy:logs-release:${Versions.kandy}@aar")
+debugImplementation("com.kwezal.kandy:logs-debug:${Version.kandy}@aar")
+releaseImplementation("com.kwezal.kandy:logs-release:${Version.kandy}@aar")
 ```
 
 ## The rest
